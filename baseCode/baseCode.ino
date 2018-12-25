@@ -15,12 +15,15 @@ void loop() {
   int tempvar;  //ригистрируем перименую tempvar
   int light;    //ригистрируем перименую light
   tempvar = analogRead(TEMP);  //вводим в перименую tempvar значение с порта TEMP
-  Serial.print(tempvar);     //пичатаем tempvar  в  монитор порта
+  Serial.print(tempvar);       //пичатаем tempvar  в  монитор порта
   Serial.print(coma);
   delay(500);  //ждём 0.5 (половину)сикунды
   light = analogRead(PHRES);//вводим в перименую  light значение с порта PHRES
-  Serial.println(light);//пичатаем  в  монитор порта перименую  light
+  Serial.println(light);    //пичатаем  в  монитор порта перименую  light
   }
+
+
+
 
 
 
@@ -42,7 +45,7 @@ MFRC522 mfrc522(SS_PIN, RST_PIN); // Create MFRC522 instance.
 void setup()
 {
 Serial.begin(9600); // инициализация последовательного порта
-SPI.begin(); // инициализация SPI
+SPI.begin();        // инициализация SPI
 mfrc522.PCD_Init(); // инициализация MFRC522
 }
 void loop()
@@ -78,11 +81,14 @@ Serial.print(buffer[i], HEX);
 
 
 
+
+
+
 // датчик газа MQ-4;
 // контакт подключения аналогового вывода MQ4
 const int analogInPin = A1;
 const int ledPin = 8; // контакт подключения светодиода
-int sensorValue = 0; // переменная для хранения значения датчика
+int sensorValue = 0;  // переменная для хранения значения датчика
 void setup()
 {
 Serial.begin(9600);
@@ -91,8 +97,8 @@ pinMode(ledPin, OUTPUT);
 void loop()
 {
 sensorValue = analogRead(analogInPin); // получить значение
-if (sensorValue >= 750) // превышение уровня
-digitalWrite(ledPin, HIGH); // зажечь светодиод превышения
+if (sensorValue >= 750)                // превышение уровня
+digitalWrite(ledPin, HIGH);            // зажечь светодиод превышения
 else
 digitalWrite(ledPin, LOW); // потушить светодиод превышения
 // вывести значение в последовательный порт
@@ -100,6 +106,11 @@ Serial.print("sensor = " );
 Serial.println(sensorValue); // пауза перед следующим измерением
 delay(1000);
 }
+
+
+
+
+
 
 
 
@@ -138,8 +149,8 @@ Sim900Serial.println(PHONE);
 Sim900Serial.println("\"");
 delay(100);
 // сообщение – данные температуры
-double val = analogRead(lm335); // чтение
-double voltage = val*5.0/1024; // перевод в вольты
+double val = analogRead(lm335);     // чтение
+double voltage = val*5.0/1024;      // перевод в вольты
 double temp = voltage*100 - 273.15; // в градусы Цельсия
 Sim900Serial.println(temp);
 delay(100);
@@ -148,6 +159,11 @@ Sim900Serial.println((char)26);
 delay(100);
 Sim900Serial.println();
 }
+
+
+
+
+
 
 
 
@@ -167,12 +183,12 @@ void loop()
 if (mySerial.available())
 {
 int c = mySerial.read(); // читаем из software-порта
-Serial.write(c); // пишем в hardware-порт
+Serial.write(c);         // пишем в hardware-порт
 }
 if (Serial.available())
 {
 int c = Serial.read(); // читаем из hardware-порта
-mySerial.write(c); // пишем в software-порт
+mySerial.write(c);     // пишем в software-порт
 }
 }
 }
