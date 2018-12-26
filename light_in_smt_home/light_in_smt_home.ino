@@ -3,12 +3,12 @@
 #define COLD 5  // пин для подключения охлаждения
 #define WARM 6  // пин для подключения обогревателя
 #define HALL_LIGHT 7  //регистрируем 7 пин как HALL_LIGHT освещение гостинной
-#define ROOM_LIGHT 8  //регистрируем 8 как ROOM_LIGHT освещение комнаты
+#define ROOM_LIGHT 13  //регистрируем 8 как ROOM_LIGHT освещение комнаты
 #define SIGNALISATION 9  // регистрируем новый пин для сигнализации
 
-#define ROOM_PHRES A0  //регистрируем А0 пин как ROOM_PHRES фоторезистор комнаты
+#define EXTERNAL_PHRES A0  //регистрируем A0 как EXTERNAL_PHRES внешний фоторезистор
 #define HALL_PHRES A1  //регистрируем А1 как HALL_PHRES фоторезистор гостинной
-#define EXTERNAL_PHRES A2  //регистрируем A2 как EXTERNAL_PHRES внешний фоторезистор
+#define ROOM_PHRES A2  //регистрируем А2 пин как ROOM_PHRES фоторезистор комнаты
 #define TERMO A3  // пин подключения датчика температуры
 #define IR_HALL A4  // пин для подключения IR датчика
 
@@ -42,35 +42,30 @@ void setup() {
 }
 
 void loop() {
-
     
   lightHall = analogRead(HALL_PHRES);  // сохраняем в переменую lightHall значение считанное с пина HALL_PHRES (А1)
   lightRoom= analogRead(ROOM_PHRES);  // сохраняем в переменую lightRoom значение считанное с пина ROOM_PHRES (А0)
   lightExternal= analogRead(EXTERNAL_PHRES);  // сохраняем в переменую lightExternal значение считанное с пина EXTERNAL_PHRES (А2)
   irhall = analogRead(IR_HALL);  // сохраняем в переменную значение считанное с ИК датчика
-
+  
   // Условие присутствия
-  if (irhall< 10){
-    
-  }
+  if (irhall < 400 || irhall > 500) digitalWrite(SIGNALISATION, HIGH);
+  else digitalWrite(SIGNALISATION, LOW);
+  Serial.println(lightRoom<200);
   
-  temp= dht.readTemperature();  // сохраняем в переменную temp показания температуры считанное с DHT датчика
-  
-  Serial.println(gas);  // печатаем в монитор порта переменую
-
-  
+  temp= dht.readTemperature();  // сохраняем в переменную temp показания температуры считанное с DHT датчика  
   
   // Условие для включения/выключения света в Hall
   // Темно в комнате
-  if (lightHall<=200) digitalWrite(HALL_LIGHT, HIGH);
+  if (lightHall<=200) {digitalWrite(HALL_LIGHT, HIGH);}
   // В противном случае свет в комнате надо погасить
-  else digitalWrite(HALL_LIGHT, LOW);
+  else {digitalWrite(HALL_LIGHT, LOW);}
   
   // Условие для включения/выключения света в Room
   // Темно в комнате
-  if (lightRoom<=200) digitalWrite(ROOM_LIGHT, HIGH);
+  if (lightRoom<=200) {digitalWrite(ROOM_LIGHT, HIGH);}
   // В противном случае свет в комнате надо погасить
-  else digitalWrite(ROOM_LIGHT, LOW); 
+  else {digitalWrite(ROOM_LIGHT, LOW);}
 
   // условие для включения нагревания и выключения охлаждения
   if (temp<21){
