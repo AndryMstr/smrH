@@ -23,6 +23,7 @@ int lightRoom;  // регистрируем переменую lightRoom для 
 int lightExternal;  // регистрируем переменую lightExternal для хранения освещенности снаружи
 int temp;  //регистрируем переменую temp
 int gas = 0;  // регистрируем переменную с газом
+int irhall;
 
 void setup() {
   pinMode(HALL_PHRES,INPUT);  // модифицируем пин HALL_PHRES (А1) как инпут (пин для приёма) 
@@ -55,35 +56,35 @@ void loop() {
   
   temp= dht.readTemperature();  // сохраняем в переменную temp показания температуры считанное с DHT датчика
   
-  Serial.println( gas);  // печатаем в монитор порта переменую
+  Serial.println(gas);  // печатаем в монитор порта переменую
 
   
   
   // Условие для включения/выключения света в Hall
   // Темно в комнате
-  if (lightHall<=200) digitalWrite(HALL_LIGHT,HIGH);
+  if (lightHall<=200) digitalWrite(HALL_LIGHT, HIGH);
   // В противном случае свет в комнате надо погасить
-  else digitalWrite(HALL_LIGHT,LOW);
+  else digitalWrite(HALL_LIGHT, LOW);
   
   // Условие для включения/выключения света в Room
   // Темно в комнате
-  if (lightRoom<=200) digitalWrite(ROOM_LIGHT,HIGH);
+  if (lightRoom<=200) digitalWrite(ROOM_LIGHT, HIGH);
   // В противном случае свет в комнате надо погасить
-  else digitalWrite(ROOM_LIGHT,LOW); 
+  else digitalWrite(ROOM_LIGHT, LOW); 
 
   // условие для включения нагревания и выключения охлаждения
   if (temp<21){
-    digitalWrite(WARM, HIGH);  // TODO
-    digitalWrite(COLD,LOW);
+    digitalWrite(WARM, HIGH);
+    digitalWrite(COLD, LOW);
     }  // TODO
-// условие для выключения нагревания и охлаждения
+  // условие для выключения нагревания и охлаждения
   else if (temp>=21 && temp<25) {
-    digitalWrite(COLD,LOW);// TODO
-    digitalWrite(WARM,LOW);}// TODO
-// условие для выключения нагревателя и включения охлажения
-  else:{
-    digitalWrite(COLD,LOW);// TODO
-    digitalWrite(WARM,LOW);}// TODO
+    digitalWrite(COLD, LOW);
+    digitalWrite(WARM, LOW);}
+  // условие для выключения нагревателя и включения охлажения
+  else{
+    digitalWrite(COLD, LOW);
+    digitalWrite(WARM, LOW);}
   
 
   delay(500);  // ждём 0.5 сeкунд
