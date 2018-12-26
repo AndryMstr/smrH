@@ -51,10 +51,10 @@ void loop() {
   // Условие присутствия
   if (irhall < 400 || irhall > 500) digitalWrite(SIGNALISATION, HIGH);
   else digitalWrite(SIGNALISATION, LOW);
-  Serial.println(lightRoom<200);
+  
   
   temp= dht.readTemperature();  // сохраняем в переменную temp показания температуры считанное с DHT датчика  
-  
+  Serial.println(temp);
   // Условие для включения/выключения света в Hall
   // Темно в комнате
   if (lightHall<=200) {digitalWrite(HALL_LIGHT, HIGH);}
