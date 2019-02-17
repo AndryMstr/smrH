@@ -1,0 +1,5 @@
+
+*.db
+*.xml
+*.iml
+server/.vscode/settings.json
