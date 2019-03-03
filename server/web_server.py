@@ -22,7 +22,7 @@ def push_new_temp():
 def push_light():
     new_light_value = request.args.get('new_light', default=0, type=int)
     with shelve.open('data.shl') as shl:
-        shl['lisht'] = new_light_value
+        shl['light'] = new_light_value
 
 
 @app.route("/push_new_humidity")  # запрос для датчика влажности
@@ -47,9 +47,9 @@ def push_new_movement():
 def get_actual_data():
     with shelve.open('data.shl') as shl:
         data = {}
-        data['temp'] = shl['temp']
-        data['humidity'] = shl['humidity']
-        data['movement'] = shl['movement']
+        data['light'] = shl['light']
+        # data['humidity'] = shl['humidity']
+        # data['movement'] = shl['movement']
     return pd.DataFrame({"value": data}).to_html()
 
 
