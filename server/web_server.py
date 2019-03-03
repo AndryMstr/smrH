@@ -1,6 +1,5 @@
 from flask import Flask, request
 import shelve
-import json
 import pandas as pd
 app = Flask(__name__)
 
@@ -16,6 +15,13 @@ def push_new_temp():
     with shelve.open('data.shl') as shl:
         shl['temp'] = new_temp
     return 'i get new temp'
+
+
+@app.route("/push_light")
+def push_light():
+    new_light_value = request.args.get('new_light', default=0, type=int)
+    with shelve.open('data.shl') as shl:
+        shl['lisht'] = new_light_value
 
 
 @app.route("/push_new_humidity")  # запрос для датчика влажности
