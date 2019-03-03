@@ -45,4 +45,4 @@ def get_actual_data():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host='192.168.1.88')
