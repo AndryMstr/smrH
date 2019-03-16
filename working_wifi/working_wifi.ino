@@ -5,6 +5,11 @@
 #define SSID     "domokom178"
 #define PASSWORD "12341234"
 #define TEMP_PIN A0
+
+
+
+
+
  
 SoftwareSerial mySerial(4, 5);
 ESP8266 wifi(mySerial);
@@ -16,11 +21,13 @@ void setup(void) {
     Serial.println("http://192.168.1.88:5000/");
   } else {
     Serial.println("Wi-Fi connection error");
+     pinMode(TEMP_PIN,INPUT);//модифицируем TEMP как инпут (приём)
   }
 }
  
 void loop(void) {
-  int temp = 500;
+  int temp = analogRead(TEMP_PIN);
+  Serial.println(temp);
   if (wifi.createTCP("192.168.1.88", 5000)) {
     String data = "GET /push_light?";
     data += "new_light=" + String(temp) + " HTTP/1.1\r\n";
