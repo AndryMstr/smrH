@@ -1,0 +1,11 @@
+
+*.dll
+*.tcl
+*.cfg
+*.pyd
+venv/Scripts/activate
+*.bat
+*.ps1
+*.exe
+*.ino
+*.xml
