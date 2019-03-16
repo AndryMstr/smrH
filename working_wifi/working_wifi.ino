@@ -13,8 +13,7 @@
  
 SoftwareSerial mySerial(4, 5);
 ESP8266 wifi(mySerial);
-//String name = "yushok_111";
- 
+
 void setup(void) {
   Serial.begin(9600);
   if (wifi.joinAP(SSID, PASSWORD)) {
