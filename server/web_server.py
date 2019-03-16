@@ -23,7 +23,7 @@ def push_light():
     new_light_value = request.args.get('new_light', default=0, type=int)
     with shelve.open('data.shl') as shl:
         shl['light'] = new_light_value
-    return 'i get new humidity'
+    return 'i get new light'
 
 
 @app.route("/push_new_humidity")  # запрос для датчика влажности
