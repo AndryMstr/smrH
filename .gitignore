@@ -15,3 +15,5 @@ venv/Scripts/activate
 *.iml
 server/.vscode/settings.json
 venv/
+.idea/
+.vscode
