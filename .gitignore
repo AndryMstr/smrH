@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 *.dll
 *.tcl
 *.cfg
@@ -9,3 +10,8 @@ venv/Scripts/activate
 *.exe
 *.ino
 *.xml
+*.db
+*.xml
+*.iml
+server/.vscode/settings.json
+venv/
