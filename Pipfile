@@ -11,6 +11,7 @@ pandas = "*"
 requests = "*"
 no = "*"
 ipykernel = "*"
+apscheduler = "*"
 
 [requires]
 python_version = "3.7"
