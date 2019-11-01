@@ -11,6 +11,7 @@ pandas = "*"
 requests = "*"
 no = "*"
 ipykernel = "*"
+numpy = "*"
 apscheduler = "*"
 
 [requires]
