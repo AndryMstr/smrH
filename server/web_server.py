@@ -46,7 +46,7 @@ def get_last_readings(df_one_sensor):
 
 all_esp_data(urls=URLS, db_name=DB_NAME, if_exists='replace')
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(all_esp_data, kwargs={'urls': URLS}, trigger='interval', minutes=10)
+sched.add_job(all_esp_data, kwargs={'urls': URLS, 'db_name': DB_NAME}, trigger='interval', minutes=10)
 sched.start()
 
 
