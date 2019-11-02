@@ -9,7 +9,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 import pandas as pd
 app = Flask(__name__)
 
-URLS = ['http://172.20.10.6']
+URLS = ['http://172.20.10.6', '172.20.10.5']
 
 
 def one_esp_data(url: str):
@@ -35,7 +35,7 @@ def all_esp_data(urls: List[str], if_exists: str = 'append'):
 
 all_esp_data(urls=URLS, if_exists='replace')
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(all_esp_data, kwargs={'urls': URLS}, trigger='interval', minutes=1)
+sched.add_job(all_esp_data, kwargs={'urls': URLS}, trigger='interval', minutes=10)
 sched.start()
 
 
