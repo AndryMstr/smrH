@@ -11,9 +11,9 @@
 #define DHTTYPE DHT11
 #define DHTPIN  2
 // Replace with your network details
-const char* ssid     = "si_yu";
-const char* password = "RAN2qazwsx?";
-const char* sensor_name = "bigone";
+const char* ssid     = "smart";
+const char* password = "17812341234";
+const char* sensor_name = "room";
 String poss_data[2] = {"temp", "humidity"};
 
 ESP8266WebServer server(80);
